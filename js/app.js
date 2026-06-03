@@ -14,8 +14,10 @@ import * as Home from './ui/screen-home.js';
 import * as Builder from './ui/screen-builder.js';
 import * as Preview from './ui/screen-preview.js';
 import * as Timer from './ui/screen-timer.js';
+import * as Library from './ui/screen-library.js';
+import * as Guide from './ui/screen-guide.js';
 
-const SCREENS = { home: Home, builder: Builder, preview: Preview, timer: Timer };
+const SCREENS = { home: Home, builder: Builder, preview: Preview, timer: Timer, library: Library, guide: Guide };
 
 const settings = loadSettings();
 const engine = new TimerEngine();
@@ -71,7 +73,10 @@ function applyTheme() {
 // ── 루틴 도우미 ──
 const allRoutines = () => [...PRESET_ROUTINES, ...loadRoutines()];
 const getRoutine = (id) => allRoutines().find((r) => r.id === id) || null;
-const effectiveRoutine = (r) => ({ ...r, work: settings.work, rest: settings.rest, rounds: settings.rounds });
+// 인터벌 모드만 홈 슬라이더 타이밍을 덮어쓴다. 고급 모드는 루틴 자체 정의 사용.
+const effectiveRoutine = (r) => ((r.mode || 'interval') === 'interval'
+  ? { ...r, work: settings.work, rest: settings.rest, rounds: settings.rounds }
+  : { ...r });
 const buildSession = (r) => compileSession(effectiveRoutine(r), settings);
 
 function startSession(routine) {

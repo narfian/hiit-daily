@@ -1,6 +1,6 @@
 // 앱셸 캐시(cache-first). 자산 변경 시 VERSION을 올리면 옛 캐시가 정리된다.
 // 모든 경로는 './' 상대 → Pages 하위 경로(/hiit-daily/)에서 올바르게 동작.
-const VERSION = 'v1';
+const VERSION = 'v2';
 const CACHE = `hiit-${VERSION}`;
 const ASSETS = [
   './', './index.html', './offline.html', './manifest.webmanifest',
@@ -8,8 +8,10 @@ const ASSETS = [
   './js/app.js', './js/state.js', './js/storage.js', './js/i18n.js', './js/compiler.js',
   './js/timer.js', './js/audio.js', './js/wakelock.js', './js/haptics.js', './js/pwa.js',
   './js/data/exercises.js', './js/data/routines.js', './js/data/strings.js',
+  './js/data/figures.js', './js/data/guide.js',
   './js/ui/components.js', './js/ui/screen-home.js', './js/ui/screen-builder.js',
   './js/ui/screen-preview.js', './js/ui/screen-timer.js',
+  './js/ui/screen-library.js', './js/ui/screen-guide.js', './js/ui/exercise-detail.js',
   './icons/icon.svg', './icons/icon-192.png', './icons/icon-512.png',
   './icons/icon-maskable-512.png', './icons/apple-touch-icon.png',
 ];
