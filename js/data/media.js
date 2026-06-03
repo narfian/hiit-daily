@@ -6,8 +6,7 @@ import { renderFigure } from './figures.js';
 
 const BASE = 'images/exercises/';
 const PRIMARY_EXT = 'png';                          // 프롬프트 문서에서 제안하는 기본 확장자(ChatGPT는 png 출력)
-const SINGLE_EXTS = ['gif', 'png', 'jpg', 'jpeg', 'webp']; // 단일 이미지 후보(gif는 자체 애니메이션)
-const FRAME_EXTS = ['png', 'jpg', 'jpeg', 'webp'];  // 다중 프레임 스틸 후보
+const OTHER_EXTS = ['jpg', 'jpeg', 'webp'];          // png 다음으로 시도할 확장자
 
 export const MEDIA = {
   // 하체
@@ -89,10 +88,12 @@ export function renderExerciseMedia(container, item, { animate = false } = {}) {
   if (!m) { renderFigure(container, item && item.figure, item && item.emoji); return; }
 
   const n = frameCount(id);
-  const candidates = [
-    ...SINGLE_EXTS.map((e) => `${BASE}${id}.${e}`),                 // 단일 이미지 / GIF
-    ...(n > 1 ? FRAME_EXTS.map((e) => `${BASE}${id}-1.${e}`) : []),  // 다중 프레임의 1번
-  ];
+  // png 우선(단일 → 프레임1), 그다음 gif/기타 확장자 — 흔한 경우를 1~2번 요청 안에 맞춘다.
+  const candidates = [`${BASE}${id}.png`];
+  if (n > 1) candidates.push(`${BASE}${id}-1.png`);
+  candidates.push(`${BASE}${id}.gif`);
+  for (const e of OTHER_EXTS) candidates.push(`${BASE}${id}.${e}`);
+  if (n > 1) for (const e of OTHER_EXTS) candidates.push(`${BASE}${id}-1.${e}`);
 
   const img = document.createElement('img');
   img.className = 'ex-photo';
@@ -114,10 +115,10 @@ export function renderExerciseMedia(container, item, { animate = false } = {}) {
   img.addEventListener('load', () => {
     if (resolved) return;
     resolved = true;
-    // 다중 프레임 스틸로 해결됐고 animate면 플립북 시작
-    if (idx >= SINGLE_EXTS.length && animate && n > 1) {
-      const ext = candidates[idx].split('.').pop();
-      startFlipbook(container, img, id, n, ext, m.ms || 650);
+    // 프레임1로 해결됐고 animate면 플립북 시작(단일 이미지/gif면 그대로 표시)
+    const url = candidates[idx];
+    if (animate && n > 1 && url.includes(`${id}-1.`)) {
+      startFlipbook(container, img, id, n, url.split('.').pop(), m.ms || 650);
     }
   });
   img.src = candidates[0];
