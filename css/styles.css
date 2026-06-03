@@ -338,6 +338,11 @@ svg.figure .arr { opacity: .6; stroke-width: 2.2; }
 .tt-figure.has-photo { background: rgba(255, 255, 255, .10); border-radius: 18px; }
 .detail-fig.has-photo, .rc-fig.has-photo, .seg-fig.has-photo, .si-fig.has-photo, .lib-fig.has-photo { background: var(--surface-2); border-radius: 10px; }
 .rc-fig .ex-photo, .seg-fig .ex-photo, .si-fig .ex-photo, .lib-fig .ex-photo { object-fit: cover; }
+/* 타이머 사진은 세로(3:4) 프레임 — 1:1 강제/상하 잘림 없이 전신을 꽉 차게 표시 */
+.tt-figure.has-photo { width: auto; height: min(42dvh, 360px); aspect-ratio: 3 / 4; }
+.tt-figure.has-photo .ex-photo { object-fit: contain; } /* 3:4 컨테이너+3:4 이미지 → 잘림 없이 꽉 참 */
+@media (min-width: 760px) and (orientation: landscape) { .tt-figure.has-photo { height: min(78dvh, 600px); } }
+@media (max-height: 700px) { .tt-desc { display: none; } }
 
 /* ── 모션 최소화 ── */
 @media (prefers-reduced-motion: reduce) {
