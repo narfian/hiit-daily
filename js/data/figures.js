@@ -106,8 +106,8 @@ for (const [id, [j, o]] of Object.entries(POSES)) FIGURES[id] = fig(j, o);
 // 컨테이너에 일러스트를 렌더(없으면 emoji 폴백). innerHTML은 신뢰된 자체 콘텐츠.
 export function renderFigure(container, id, emoji = '') {
   const svg = id && FIGURES[id];
-  if (svg) { container.innerHTML = svg; container.classList.add('has-fig'); container.classList.remove('is-emoji'); }
-  else { container.innerHTML = ''; container.textContent = emoji || ''; container.classList.add('is-emoji'); container.classList.remove('has-fig'); }
+  if (svg) { container.innerHTML = svg; container.classList.add('has-fig'); container.classList.remove('is-emoji', 'has-photo'); }
+  else { container.innerHTML = ''; container.textContent = emoji || ''; container.classList.add('is-emoji'); container.classList.remove('has-fig', 'has-photo'); }
 }
 
 export function hasFigure(id) { return !!(id && FIGURES[id]); }
