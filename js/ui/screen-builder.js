@@ -2,7 +2,7 @@ import { el, mount, toast } from './components.js';
 import { t, tx } from '../i18n.js';
 import { EXERCISES, EXERCISE_MAP } from '../data/exercises.js';
 import { newRoutineId } from '../storage.js';
-import { renderFigure } from '../data/figures.js';
+import { renderExerciseMedia } from '../data/media.js';
 import { openExercise } from './exercise-detail.js';
 
 const clone = (o) => JSON.parse(JSON.stringify(o));
@@ -80,7 +80,7 @@ export function render(container, ctx) {
       ...draft.items.map((item, i) => {
         const ex = EXERCISE_MAP[item.exerciseId];
         const fig = el('span', { class: 'si-fig' });
-        renderFigure(fig, ex && ex.figure, ex && ex.emoji);
+        renderExerciseMedia(fig, ex || { emoji: '•' }, { animate: false });
         return el('div', { class: 'sel-item' }, fig,
           el('button', { class: 'si-name link', on: { click: () => ex && openExercise(ex, {}) } }, ex ? tx(ex.name) : item.exerciseId),
           itemField(item),
@@ -114,7 +114,7 @@ export function render(container, ctx) {
   const library = el('div', { class: 'lib-grid' },
     ...EXERCISES.map((ex) => {
       const fig = el('span', { class: 'lib-fig' });
-      renderFigure(fig, ex.figure, ex.emoji);
+      renderExerciseMedia(fig, ex, { animate: false });
       return el('div', { class: 'lib-card' },
         el('button', { class: 'lib-add', 'aria-label': t('add'), on: { click: () => add(ex.id) } }, fig, el('span', { class: 'lib-name' }, tx(ex.name))),
         el('button', { class: 'lib-info', 'aria-label': tx(ex.name), on: { click: () => openExercise(ex, { onAdd: (e) => add(e.id) }) } }, 'ⓘ'),

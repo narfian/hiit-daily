@@ -319,6 +319,13 @@ svg.figure .arr { opacity: .6; stroke-width: 2.2; }
 .g-table th, .g-table td { border: 1px solid var(--border); padding: 7px 9px; text-align: left; }
 .g-table th { background: var(--surface-2); color: var(--text-dim); }
 
+/* ── 운동 사진/GIF ── */
+.ex-photo { width: 100%; height: 100%; object-fit: contain; display: block; }
+.has-photo { overflow: hidden; }
+.tt-figure.has-photo { background: rgba(255, 255, 255, .10); border-radius: 18px; }
+.detail-fig.has-photo, .rc-fig.has-photo, .seg-fig.has-photo, .si-fig.has-photo, .lib-fig.has-photo { background: var(--surface-2); border-radius: 10px; }
+.rc-fig .ex-photo, .seg-fig .ex-photo, .si-fig .ex-photo, .lib-fig .ex-photo { object-fit: cover; }
+
 /* ── 모션 최소화 ── */
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { transition: none !important; animation: none !important; }

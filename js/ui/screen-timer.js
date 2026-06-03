@@ -1,6 +1,6 @@
 import { el, mount, formatTime, labelKeyForKind } from './components.js';
 import { t, tx } from '../i18n.js';
-import { renderFigure } from '../data/figures.js';
+import { renderExerciseMedia, stopMedia } from '../data/media.js';
 
 export function render(container, ctx) {
   const engine = ctx.engine;
@@ -53,7 +53,7 @@ export function render(container, ctx) {
     root.className = `screen timer k-${segment.kind}`;
     isAmrap = segment.kind === 'amrap';
     stateBadge.textContent = isAmrap ? 'AMRAP' : t(labelKeyForKind(segment.kind));
-    renderFigure(figureBox, segment.figure, segment.emoji);
+    renderExerciseMedia(figureBox, segment, { animate: true });
     name.textContent = segment.name ? tx(segment.name) : '';
     desc.textContent = segment.desc ? tx(segment.desc) : '';
     reps.textContent = segment.reps ? t('repsN', segment.reps) : '';
@@ -105,5 +105,5 @@ export function render(container, ctx) {
   const snap = engine.snapshot();
   if (snap) { applyState(snap.segment); applyTick(snap); }
 
-  return () => { unsubs.forEach((u) => u()); };
+  return () => { unsubs.forEach((u) => u()); stopMedia(figureBox); };
 }

@@ -1,6 +1,6 @@
 import { el, mount, formatTime, labelKeyForKind } from './components.js';
 import { t, tx, getLang } from '../i18n.js';
-import { renderFigure } from '../data/figures.js';
+import { renderExerciseMedia } from '../data/media.js';
 import { openExercise } from './exercise-detail.js';
 import { EXERCISE_MAP } from '../data/exercises.js';
 
@@ -13,7 +13,7 @@ export function render(container, ctx) {
 
   const detailRow = (ex, reps, secs, kindLabel, round) => {
     const fig = el('span', { class: 'seg-fig' });
-    renderFigure(fig, ex && ex.figure, (ex && ex.emoji) || '•');
+    renderExerciseMedia(fig, ex || { emoji: '•' }, { animate: false });
     return el(ex ? 'button' : 'div', {
       class: 'seg-row k-work' + (ex ? ' tappable' : ''),
       ...(ex ? { on: { click: () => openExercise(ex, {}) } } : {}),
@@ -38,7 +38,7 @@ export function render(container, ctx) {
       .map((s) => {
         const ex = s.exerciseId && EXERCISE_MAP[s.exerciseId];
         const fig = el('span', { class: 'seg-fig' });
-        renderFigure(fig, s.figure, s.emoji || (s.kind === 'rest' ? '😮‍💨' : '•'));
+        renderExerciseMedia(fig, { exerciseId: s.exerciseId, figure: s.figure, emoji: s.emoji || (s.kind === 'rest' ? '😮‍💨' : '•') }, { animate: false });
         const clickable = !!ex;
         return el(clickable ? 'button' : 'div', {
           class: `seg-row k-${s.kind}` + (clickable ? ' tappable' : ''),
