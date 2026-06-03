@@ -47,12 +47,13 @@ node tools/gen-icons.mjs
 ## 운동 사진/GIF 추가하기
 운동 동작은 기본적으로 미니멀 SVG 일러스트로 표시되며, 사진을 넣으면 자동으로 사진(여러 장이면 움직이는 플립북)으로 바뀝니다.
 1. 생성 프롬프트 문서를 만듭니다(이미 포함되어 있음): `node tools/gen-prompts.mjs` → **`images/PROMPTS.md`**
-2. 그 프롬프트로 이미지를 생성(ChatGPT/DALL·E, Midjourney, Stable Diffusion 등)해 **`images/exercises/`** 에 **정확한 파일명**으로 저장합니다.
-   - 단일 동작: `squat.jpg` 처럼 1장 / 여러 동작(예: 버피): `burpee-1.jpg … burpee-4.jpg`
-   - 직접 만든 애니메이션 GIF가 있으면 `burpee.gif` 로 저장해도 됩니다.
-3. 커밋하면 끝. **없는 운동은 SVG로 자동 표시**되므로 하나씩 점진적으로 채워도 됩니다.
+2. 그 프롬프트로 이미지를 생성(ChatGPT/DALL·E, Midjourney 등)해 **`images/exercises/`** 에 저장합니다. 확장자는 **png·jpg·webp·gif 모두 자동 인식**됩니다(ChatGPT는 png).
+   - **한 장만**: `squat.png` — 이것만으로 바로 표시됩니다.
+   - **움직임(여러 동작)**: `burpee-1.png … burpee-4.png` → 앱이 자동 순환(플립북).
+   - **애니메이션 GIF**: `burpee.gif` 로 저장하면 그대로 재생됩니다.
+3. 커밋하면 끝. **없는 운동은 SVG로 자동 표시**되므로 하나씩 점진적으로 채워도 됩니다. (단일 `<id>.png`가 프레임 이미지보다 우선)
 
-프레임 수·확장자·재생 속도는 `js/data/media.js`(`MEDIA`, `EXT`, `ms`)에서 조정합니다. 사진은 서비스워커가 처음 볼 때 캐시해 **오프라인에서도** 보입니다.
+프레임 수·재생 속도는 `js/data/media.js`(`MEDIA`, `ms`)에서 조정합니다. 사진은 서비스워커가 처음 볼 때 캐시해 **오프라인에서도** 보입니다. 용량을 위해 한 변 ~800px 내외로 줄여서 넣는 것을 권장합니다.
 
 ## 알아두기(특히 iOS)
 - **소리가 안 들리면** 기기의 **무음 스위치를 해제**하세요(iOS는 무음 모드에서 효과음이 막힘).
