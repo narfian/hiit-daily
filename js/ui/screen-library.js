@@ -1,7 +1,7 @@
 import { el, mount } from './components.js';
 import { t, tx } from '../i18n.js';
 import { EXERCISES, ALL_TAGS } from '../data/exercises.js';
-import { renderFigure } from '../data/figures.js';
+import { renderExerciseMedia } from '../data/media.js';
 import { openExercise } from './exercise-detail.js';
 
 export function render(container, ctx) {
@@ -12,7 +12,7 @@ export function render(container, ctx) {
     const list = activeTag === 'all' ? EXERCISES : EXERCISES.filter((e) => e.tags.includes(activeTag));
     const g = el('div', { class: 'lib-grid big' }, ...list.map((ex) => {
       const fig = el('div', { class: 'lib-fig' });
-      renderFigure(fig, ex.figure, ex.emoji);
+      renderExerciseMedia(fig, ex, { animate: false });
       return el('button', { class: 'lib-card', on: { click: () => openExercise(ex, {}) } },
         fig, el('span', { class: 'lib-name' }, tx(ex.name)),
         ex.quiet ? el('span', { class: 'badge quiet' }, t('quietBadge')) : null);

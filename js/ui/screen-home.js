@@ -3,7 +3,7 @@ import { t, tx, getLang, toggleLang } from '../i18n.js';
 import { DIFFICULTIES } from '../data/routines.js';
 import { EXERCISE_MAP } from '../data/exercises.js';
 import { compileSession } from '../compiler.js';
-import { renderFigure } from '../data/figures.js';
+import { renderExerciseMedia } from '../data/media.js';
 
 const MODE_KEY = { interval: 'modeInterval', tabata: 'modeTabata', emom: 'modeEmom', amrap: 'modeAmrap', ladder: 'modeLadder' };
 const firstEx = (r) => EXERCISE_MAP[r.items?.[0]?.exerciseId];
@@ -71,7 +71,7 @@ export function render(container, ctx) {
     const list = el('div', { class: 'routine-list' });
     for (const r of ctx.allRoutines()) {
       const fig = el('div', { class: 'rc-fig' });
-      renderFigure(fig, firstEx(r)?.figure, firstEx(r)?.emoji || '🏋️');
+      renderExerciseMedia(fig, firstEx(r) || { emoji: '🏋️' }, { animate: false });
       const m = r.mode || 'interval';
       list.appendChild(el('button', {
         class: 'routine-card' + (r.id === ctx.settings.selectedRoutineId ? ' selected' : ''), dataset: { rid: r.id },

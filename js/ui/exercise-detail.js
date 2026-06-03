@@ -1,11 +1,11 @@
 import { el } from './components.js';
 import { t, tx } from '../i18n.js';
-import { renderFigure } from '../data/figures.js';
+import { renderExerciseMedia, stopMedia } from '../data/media.js';
 
 // 운동 상세 모달. onAdd가 있으면 "루틴에 추가" 버튼 표시.
 export function openExercise(ex, { onAdd } = {}) {
   const figBox = el('div', { class: 'detail-fig' });
-  renderFigure(figBox, ex.figure, ex.emoji);
+  renderExerciseMedia(figBox, ex, { animate: true });
 
   const muscles = tx(ex.muscles) || [];
   const cues = tx(ex.cues) || [];
@@ -16,7 +16,7 @@ export function openExercise(ex, { onAdd } = {}) {
     : null;
   const varBlock = (label, val) => val ? el('div', { class: 'detail-var' }, el('strong', {}, label), ' ', tx(val)) : null;
 
-  function close() { overlay.remove(); document.removeEventListener('keydown', onKey); }
+  function close() { stopMedia(figBox); overlay.remove(); document.removeEventListener('keydown', onKey); }
   function onKey(e) { if (e.key === 'Escape') close(); }
 
   const overlay = el('div', { class: 'modal-overlay', on: { click: (e) => { if (e.target === overlay) close(); } } },
