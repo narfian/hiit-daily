@@ -72,6 +72,19 @@ export const STRINGS = {
     installHint: '홈 화면에 추가하면 앱처럼 전체화면으로 쓸 수 있어요.',
     offlineReady: '오프라인에서도 사용할 수 있어요.',
     keyboardHint: '스페이스: 일시정지/계속 · ← →: 이전/다음',
+
+    // 동작 사전 / 상세 / 가이드
+    library: '동작 사전', guide: '가이드', allExercises: '모든 동작', filterAll: '전체',
+    targetMuscles: '주요 근육', formCues: '폼 포인트', commonMistakes: '자주 하는 실수',
+    easierVar: '쉽게 ↓', harderVar: '어렵게 ↑', addToRoutine: '루틴에 추가',
+    // 모드
+    mode: '방식', modeInterval: '인터벌', modeTabata: 'Tabata', modeEmom: 'EMOM', modeAmrap: 'AMRAP', modeLadder: '래더',
+    modeIntervalHint: '운동/휴식 반복', modeTabataHint: '20초/10초 × 8 블록',
+    modeEmomHint: '매 분 정해진 횟수', modeAmrapHint: '제한시간 내 최대 라운드', modeLadderHint: '시간이 오르내림',
+    repsN: (n) => `${n}회`, repsTarget: '목표 횟수', repsLabel: '횟수',
+    slotSec: '슬롯(초)', timeCapMin: '제한시간(분)', ladderSeq: '래더(초, 쉼표 구분)',
+    addRound: '+1 라운드', roundsDoneN: (n) => `${n} 라운드 완료`,
+    emomTip: '횟수를 끝내면 남는 시간은 휴식하세요.', amrapTip: '한 바퀴 끝낼 때마다 +1 라운드를 누르세요.',
   },
   en: {
     appName: 'HIIT Daily',
@@ -135,5 +148,18 @@ export const STRINGS = {
     installHint: 'Add to Home Screen to use it full-screen like an app.',
     offlineReady: 'Works offline too.',
     keyboardHint: 'Space: pause/resume · ← →: prev/next',
+
+    // Exercise library / detail / guide
+    library: 'Exercises', guide: 'Guide', allExercises: 'All exercises', filterAll: 'All',
+    targetMuscles: 'Target muscles', formCues: 'Form cues', commonMistakes: 'Common mistakes',
+    easierVar: 'Easier ↓', harderVar: 'Harder ↑', addToRoutine: 'Add to routine',
+    // Modes
+    mode: 'Mode', modeInterval: 'Interval', modeTabata: 'Tabata', modeEmom: 'EMOM', modeAmrap: 'AMRAP', modeLadder: 'Ladder',
+    modeIntervalHint: 'Work / rest intervals', modeTabataHint: '20s/10s × 8 blocks',
+    modeEmomHint: 'Set reps every minute', modeAmrapHint: 'Max rounds in a time cap', modeLadderHint: 'Time goes up and down',
+    repsN: (n) => `${n} reps`, repsTarget: 'Target reps', repsLabel: 'Reps',
+    slotSec: 'Slot (s)', timeCapMin: 'Time cap (min)', ladderSeq: 'Ladder (s, comma-separated)',
+    addRound: '+1 round', roundsDoneN: (n) => `${n} rounds done`,
+    emomTip: 'Finish the reps, then rest the remaining time.', amrapTip: 'Tap +1 round each time you finish the list.',
   },
 };
