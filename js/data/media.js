@@ -5,7 +5,9 @@
 import { renderFigure } from './figures.js';
 
 const BASE = 'images/exercises/';
-const EXT = 'jpg';
+const PRIMARY_EXT = 'png';                          // 프롬프트 문서에서 제안하는 기본 확장자(ChatGPT는 png 출력)
+const SINGLE_EXTS = ['gif', 'png', 'jpg', 'jpeg', 'webp']; // 단일 이미지 후보(gif는 자체 애니메이션)
+const FRAME_EXTS = ['png', 'jpg', 'jpeg', 'webp'];  // 다중 프레임 스틸 후보
 
 export const MEDIA = {
   // 하체
@@ -64,40 +66,78 @@ export function frameCount(id) {
   return (m.positions && m.positions.length) || m.frames || 1;
 }
 
+// 프롬프트 문서가 제안하는 파일명(기본 확장자). 실제 로드는 여러 확장자를 자동 인식한다.
 export function frameUrls(id) {
   const m = MEDIA[id];
   if (!m) return null;
   if (m.gif) return [`${BASE}${id}.gif`];
   const n = frameCount(id);
-  return n === 1 ? [`${BASE}${id}.${EXT}`] : Array.from({ length: n }, (_, i) => `${BASE}${id}-${i + 1}.${EXT}`);
+  return n === 1 ? [`${BASE}${id}.${PRIMARY_EXT}`] : Array.from({ length: n }, (_, i) => `${BASE}${id}-${i + 1}.${PRIMARY_EXT}`);
 }
 
 export function stopMedia(container) {
   if (container && container._mediaTimer) { clearInterval(container._mediaTimer); container._mediaTimer = null; }
 }
 
-// 사진을 표시(없으면 SVG/이모지 폴백). animate=true면 다중 프레임을 순환(플립북).
+// 사진을 표시(없으면 SVG/이모지 폴백). 확장자(png/jpg/webp/gif) 자동 인식.
+// 우선순위: 단일 이미지 "<id>.{gif,png,...}"(있으면 그것만; gif는 자체 애니메이션)
+//          → 다중 프레임 스틸 "<id>-1.{ext}"…(animate면 플립북) → SVG.
 export function renderExerciseMedia(container, item, { animate = false } = {}) {
   stopMedia(container);
   const id = (item && (item.exerciseId || item.id)) || null;
-  const urls = id ? frameUrls(id) : null;
-  if (!urls) { renderFigure(container, item && item.figure, item && item.emoji); return; }
+  const m = id && MEDIA[id];
+  if (!m) { renderFigure(container, item && item.figure, item && item.emoji); return; }
+
+  const n = frameCount(id);
+  const candidates = [
+    ...SINGLE_EXTS.map((e) => `${BASE}${id}.${e}`),                 // 단일 이미지 / GIF
+    ...(n > 1 ? FRAME_EXTS.map((e) => `${BASE}${id}-1.${e}`) : []),  // 다중 프레임의 1번
+  ];
 
   const img = document.createElement('img');
   img.className = 'ex-photo';
   img.alt = '';
   img.loading = 'lazy';
   img.decoding = 'async';
-  img.addEventListener('error', () => { stopMedia(container); renderFigure(container, item.figure, item.emoji); });
-  img.src = urls[0];
   container.innerHTML = '';
   container.classList.add('has-photo');
   container.classList.remove('is-emoji');
   container.appendChild(img);
 
-  const m = MEDIA[id];
-  if (animate && urls.length > 1 && !m.gif) {
-    let i = 0; const ms = m.ms || 650;
-    container._mediaTimer = setInterval(() => { i = (i + 1) % urls.length; img.src = urls[i]; }, ms);
+  let idx = 0, resolved = false;
+  img.addEventListener('error', () => {
+    if (resolved) return;                 // 해결 후의 에러(애니메이션 프레임)는 무시
+    idx += 1;
+    if (idx < candidates.length) img.src = candidates[idx];
+    else { stopMedia(container); renderFigure(container, item.figure, item.emoji); } // 전부 없으면 SVG
+  });
+  img.addEventListener('load', () => {
+    if (resolved) return;
+    resolved = true;
+    // 다중 프레임 스틸로 해결됐고 animate면 플립북 시작
+    if (idx >= SINGLE_EXTS.length && animate && n > 1) {
+      const ext = candidates[idx].split('.').pop();
+      startFlipbook(container, img, id, n, ext, m.ms || 650);
+    }
+  });
+  img.src = candidates[0];
+}
+
+// 다중 프레임을 미리 로드해 존재하는 프레임만 순환(404 프레임으로 src를 바꾸지 않음).
+function startFlipbook(container, img, id, n, ext, ms) {
+  const slots = new Array(n).fill(null);
+  slots[0] = `${BASE}${id}-1.${ext}`;
+  for (let i = 2; i <= n; i += 1) {
+    const url = `${BASE}${id}-${i}.${ext}`;
+    const pre = document.createElement('img');
+    pre.addEventListener('load', () => { slots[i - 1] = url; });
+    pre.src = url;
   }
+  let k = 0;
+  container._mediaTimer = setInterval(() => {
+    for (let step = 1; step <= n; step += 1) {
+      const j = (k + step) % n;
+      if (slots[j]) { k = j; img.src = slots[j]; break; }
+    }
+  }, ms);
 }
