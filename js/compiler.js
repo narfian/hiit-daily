@@ -104,7 +104,7 @@ function prelude(segments, settings) {
 }
 
 function postlude(segments, settings) {
-  if (settings.cooldown) for (const c of COOLDOWN_BLOCK) segments.push(seg('cooldown', c.seconds, { name: c.name, desc: c.desc, emoji: c.emoji, figure: c.figure || null }));
+  if (settings.cooldown) for (const c of COOLDOWN_BLOCK) segments.push(seg('cooldown', c.seconds, { name: c.name, desc: c.desc, emoji: c.emoji, figure: c.figure || null, exerciseId: c.id || null }));
   segments.push(seg('done', 0, { emoji: '🎉' }));
 }
 

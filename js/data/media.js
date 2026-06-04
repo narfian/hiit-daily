@@ -66,6 +66,14 @@ export const MEDIA = {
   'warmup-squat': { positions: ['standing tall, relaxed', 'shallow bodyweight squat, finding range of motion'] },
   'warmup-lunge-twist': { positions: ['in a lunge, torso facing forward', 'in a lunge, torso rotated over the front thigh'] },
   'warmup-inchworm': { positions: ['standing, hinging forward to place hands on the floor', 'hands walked out halfway', 'full plank position'] },
+
+  // ── 쿨다운(스트레칭, 정적 1컷) ──
+  'cooldown-march': { positions: ['walking gently in place to cool down'] },
+  'cooldown-thigh': { positions: ['standing quad stretch, holding one foot behind the glute, knees together'] },
+  'cooldown-calf': { positions: ['standing calf stretch, hands on a wall, one leg straight back with the heel down'] },
+  'cooldown-chest': { positions: ['standing chest stretch, hands clasped behind the back, chest open'] },
+  'cooldown-shoulder': { positions: ['standing shoulder stretch, one arm pulled across the chest'] },
+  'cooldown-child-pose': { positions: ['child pose, kneeling with arms extended forward and forehead near the floor'] },
 };
 
 export function frameCount(id) {
