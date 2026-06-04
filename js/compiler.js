@@ -100,7 +100,7 @@ function compileLadder(routine, settings, library, segments) {
 function prelude(segments, settings) {
   const g = Number(settings.getReady) || 0;
   if (g > 0) segments.push(seg('getready', g, { emoji: '⏱️' }));
-  if (settings.warmup) for (const w of WARMUP_BLOCK) segments.push(seg('warmup', w.seconds, { name: w.name, desc: w.desc, emoji: w.emoji, figure: w.figure || null }));
+  if (settings.warmup) for (const w of WARMUP_BLOCK) segments.push(seg('warmup', w.seconds, { name: w.name, desc: w.desc, emoji: w.emoji, figure: w.figure || null, exerciseId: w.id || null }));
 }
 
 function postlude(segments, settings) {
