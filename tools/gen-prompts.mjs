@@ -4,7 +4,7 @@ import { writeFileSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
 import { dirname, join } from 'node:path';
 import { EXERCISES } from '../js/data/exercises.js';
-import { WARMUP_BLOCK } from '../js/data/routines.js';
+import { WARMUP_BLOCK, COOLDOWN_BLOCK } from '../js/data/routines.js';
 import { MEDIA, frameUrls } from '../js/data/media.js';
 
 const IMAGES = join(dirname(fileURLToPath(import.meta.url)), '..', 'images');
@@ -54,3 +54,6 @@ writeDoc('PROMPTS.md', '운동 사진 생성 프롬프트 / Exercise image promp
 
 writeDoc('PROMPTS-warmup.md', '워밍업 사진 생성 프롬프트 / Warm-up image prompts',
   '워밍업 동작 이미지를 위한 프롬프트 모음입니다. 같은 트레이너로 가볍게 준비운동하는 자세를 만드세요. 파일은 운동 이미지와 같은 `images/exercises/` 폴더에 넣으면 됩니다.', WARMUP_BLOCK);
+
+writeDoc('PROMPTS-cooldown.md', '쿨다운 사진 생성 프롬프트 / Cool-down image prompts',
+  '쿨다운(스트레칭) 동작 이미지를 위한 프롬프트 모음입니다. 같은 트레이너로 차분한 정적 스트레칭 자세를 만드세요. 파일은 같은 `images/exercises/` 폴더에 넣으면 됩니다.', COOLDOWN_BLOCK);

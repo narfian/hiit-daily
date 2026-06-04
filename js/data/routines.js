@@ -117,10 +117,10 @@ export const WARMUP_BLOCK = [
 ];
 
 export const COOLDOWN_BLOCK = [
-  { emoji: '🚶', seconds: 30, name: { ko: '가벼운 제자리 걷기', en: 'Easy March' }, desc: { ko: '심박을 천천히 낮추기', en: 'Bring the heart rate down' } },
-  { emoji: '🦵', seconds: 40, name: { ko: '허벅지 스트레칭', en: 'Thigh Stretch' }, desc: { ko: '허벅지 앞쪽을 늘려주기 (좌우)', en: 'Stretch the front thighs (both)' } },
-  { emoji: '🦶', seconds: 40, name: { ko: '종아리 스트레칭', en: 'Calf Stretch' }, desc: { ko: '벽을 밀며 종아리 늘리기', en: 'Push the wall, stretch calves' } },
-  { emoji: '🫁', seconds: 40, name: { ko: '가슴 스트레칭', en: 'Chest Stretch' }, desc: { ko: '양손을 뒤로 깍지 껴 가슴 펴기', en: 'Clasp hands behind, open the chest' } },
-  { emoji: '💪', seconds: 40, name: { ko: '어깨 스트레칭', en: 'Shoulder Stretch' }, desc: { ko: '팔을 가슴 앞으로 당겨 늘리기', en: 'Pull an arm across the chest' } },
-  { emoji: '🧘', seconds: 40, name: { ko: '차일드 포즈', en: 'Child’s Pose' }, desc: { ko: '엎드려 등·허리 이완', en: 'Kneel and relax the back' } },
+  { id: 'cooldown-march', emoji: '🚶', seconds: 30, name: { ko: '가벼운 제자리 걷기', en: 'Easy March' }, desc: { ko: '심박을 천천히 낮추기', en: 'Bring the heart rate down' } },
+  { id: 'cooldown-thigh', emoji: '🦵', seconds: 40, name: { ko: '허벅지 스트레칭', en: 'Thigh Stretch' }, desc: { ko: '허벅지 앞쪽을 늘려주기 (좌우)', en: 'Stretch the front thighs (both)' } },
+  { id: 'cooldown-calf', emoji: '🦶', seconds: 40, name: { ko: '종아리 스트레칭', en: 'Calf Stretch' }, desc: { ko: '벽을 밀며 종아리 늘리기', en: 'Push the wall, stretch calves' } },
+  { id: 'cooldown-chest', emoji: '🫁', seconds: 40, name: { ko: '가슴 스트레칭', en: 'Chest Stretch' }, desc: { ko: '양손을 뒤로 깍지 껴 가슴 펴기', en: 'Clasp hands behind, open the chest' } },
+  { id: 'cooldown-shoulder', emoji: '💪', seconds: 40, name: { ko: '어깨 스트레칭', en: 'Shoulder Stretch' }, desc: { ko: '팔을 가슴 앞으로 당겨 늘리기', en: 'Pull an arm across the chest' } },
+  { id: 'cooldown-child-pose', emoji: '🧘', seconds: 40, name: { ko: '차일드 포즈', en: 'Child’s Pose' }, desc: { ko: '엎드려 등·허리 이완', en: 'Kneel and relax the back' } },
 ];
