@@ -56,6 +56,16 @@ export const MEDIA = {
   'walkout-plank': { positions: ['standing, hinging to place hands on the floor', 'hands walked out halfway', 'full plank position'] },
   'squat-thrust': { positions: ['standing', 'hands on the floor in a squat', 'feet kicked back to a plank (no jump)'] },
   'tuck-jump': { positions: ['loading in a quarter squat', 'airborne with knees tucked to the chest'] },
+
+  // ── 워밍업 ──
+  'warmup-march': { positions: ['marching in place, right knee lifted', 'marching in place, left knee lifted'] },
+  'warmup-jacks': { positions: ['feet together, arms at the sides', 'feet wide, arms overhead, light effort'] },
+  'warmup-arm-circles': { positions: ['arms extended out to the sides, circling forward', 'arms extended, circling backward'] },
+  'warmup-leg-swings': { positions: ['standing on one leg, the other leg swung forward', 'the same leg swung back'] },
+  'warmup-hip-circles': { positions: ['hands on hips, hips circled to one side', 'hands on hips, hips circled to the other side'] },
+  'warmup-squat': { positions: ['standing tall, relaxed', 'shallow bodyweight squat, finding range of motion'] },
+  'warmup-lunge-twist': { positions: ['in a lunge, torso facing forward', 'in a lunge, torso rotated over the front thigh'] },
+  'warmup-inchworm': { positions: ['standing, hinging forward to place hands on the floor', 'hands walked out halfway', 'full plank position'] },
 };
 
 export function frameCount(id) {

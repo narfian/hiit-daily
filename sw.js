@@ -1,6 +1,6 @@
 // 앱셸 캐시(cache-first). 자산 변경 시 VERSION을 올리면 옛 캐시가 정리된다.
 // 모든 경로는 './' 상대 → Pages 하위 경로(/hiit-daily/)에서 올바르게 동작.
-const VERSION = 'v6';
+const VERSION = 'v7';
 const CACHE = `hiit-${VERSION}`;
 const ASSETS = [
   './', './index.html', './offline.html', './manifest.webmanifest',

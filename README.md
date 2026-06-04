@@ -46,7 +46,7 @@ node tools/gen-icons.mjs
 
 ## 운동 사진/GIF 추가하기
 운동 동작은 기본적으로 미니멀 SVG 일러스트로 표시되며, 사진을 넣으면 자동으로 사진(여러 장이면 움직이는 플립북)으로 바뀝니다.
-1. 생성 프롬프트 문서를 만듭니다(이미 포함되어 있음): `node tools/gen-prompts.mjs` → **`images/PROMPTS.md`**
+1. 생성 프롬프트 문서를 만듭니다(이미 포함되어 있음): `node tools/gen-prompts.mjs` → **`images/PROMPTS.md`**(운동) 와 **`images/PROMPTS-warmup.md`**(워밍업). 워밍업 이미지도 같은 `images/exercises/` 폴더에 `warmup-*.png` 로 넣으면 이모지/SVG를 대체합니다.
 2. 그 프롬프트로 이미지를 생성(ChatGPT/DALL·E, Midjourney 등)해 **`images/exercises/`** 에 저장합니다. 확장자는 **png·jpg·webp·gif 모두 자동 인식**됩니다(ChatGPT는 png).
    - **한 장만**: `squat.png` — 이것만으로 바로 표시됩니다.
    - **움직임(여러 동작)**: `burpee-1.png … burpee-4.png` → 앱이 자동 순환(플립북).

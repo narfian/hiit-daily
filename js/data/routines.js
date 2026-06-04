@@ -104,16 +104,16 @@ export const PRESET_ROUTINES = [
   },
 ];
 
-// 워밍업(~4분): 점진적으로 심박↑ + 가동범위 확보. figure는 있으면 표시.
+// 워밍업(~4분): 점진적으로 심박↑ + 가동범위 확보. id로 사진 매칭, 없으면 figure/emoji.
 export const WARMUP_BLOCK = [
-  { emoji: '🚶', seconds: 30, figure: 'standing-knee-raise', name: { ko: '제자리 걷기', en: 'March in Place' }, desc: { ko: '가볍게 제자리에서 걷기', en: 'Walk lightly in place' } },
-  { emoji: '🤸', seconds: 30, figure: 'jumping-jack', name: { ko: '가벼운 점핑잭', en: 'Light Jumping Jacks' }, desc: { ko: '낮은 강도로 천천히', en: 'Easy, low effort' } },
-  { emoji: '🙆', seconds: 30, name: { ko: '팔 돌리기', en: 'Arm Circles' }, desc: { ko: '양팔을 앞뒤로 크게', en: 'Big circles forward and back' } },
-  { emoji: '🦵', seconds: 30, name: { ko: '다리 스윙', en: 'Leg Swings' }, desc: { ko: '앞뒤·좌우로 다리 흔들기', en: 'Swing legs front-back, side-side' } },
-  { emoji: '🔄', seconds: 30, name: { ko: '고관절 돌리기', en: 'Hip Circles' }, desc: { ko: '골반을 천천히 크게', en: 'Circle the hips slowly' } },
-  { emoji: '🦵', seconds: 30, figure: 'squat', name: { ko: '맨몸 스쿼트', en: 'Bodyweight Squats' }, desc: { ko: '가동범위 확인하며 천천히', en: 'Slow, find your range' } },
-  { emoji: '🔁', seconds: 30, figure: 'lunge', name: { ko: '런지 비틀기', en: 'Lunge with Twist' }, desc: { ko: '런지 자세에서 상체 회전', en: 'Rotate the torso in a lunge' } },
-  { emoji: '🐛', seconds: 30, figure: 'walkout-plank', name: { ko: '인치웜', en: 'Inchworm' }, desc: { ko: '손으로 걸어 플랭크까지 갔다 오기', en: 'Walk hands out to plank and back' } },
+  { id: 'warmup-march', emoji: '🚶', seconds: 30, figure: 'standing-knee-raise', name: { ko: '제자리 걷기', en: 'March in Place' }, desc: { ko: '가볍게 제자리에서 걷기', en: 'Walk lightly in place' } },
+  { id: 'warmup-jacks', emoji: '🤸', seconds: 30, figure: 'jumping-jack', name: { ko: '가벼운 점핑잭', en: 'Light Jumping Jacks' }, desc: { ko: '낮은 강도로 천천히', en: 'Easy, low effort' } },
+  { id: 'warmup-arm-circles', emoji: '🙆', seconds: 30, name: { ko: '팔 돌리기', en: 'Arm Circles' }, desc: { ko: '양팔을 앞뒤로 크게', en: 'Big circles forward and back' } },
+  { id: 'warmup-leg-swings', emoji: '🦵', seconds: 30, name: { ko: '다리 스윙', en: 'Leg Swings' }, desc: { ko: '앞뒤·좌우로 다리 흔들기', en: 'Swing legs front-back, side-side' } },
+  { id: 'warmup-hip-circles', emoji: '🔄', seconds: 30, name: { ko: '고관절 돌리기', en: 'Hip Circles' }, desc: { ko: '골반을 천천히 크게', en: 'Circle the hips slowly' } },
+  { id: 'warmup-squat', emoji: '🦵', seconds: 30, figure: 'squat', name: { ko: '맨몸 스쿼트', en: 'Bodyweight Squats' }, desc: { ko: '가동범위 확인하며 천천히', en: 'Slow, find your range' } },
+  { id: 'warmup-lunge-twist', emoji: '🔁', seconds: 30, figure: 'lunge', name: { ko: '런지 비틀기', en: 'Lunge with Twist' }, desc: { ko: '런지 자세에서 상체 회전', en: 'Rotate the torso in a lunge' } },
+  { id: 'warmup-inchworm', emoji: '🐛', seconds: 30, figure: 'walkout-plank', name: { ko: '인치웜', en: 'Inchworm' }, desc: { ko: '손으로 걸어 플랭크까지 갔다 오기', en: 'Walk hands out to plank and back' } },
 ];
 
 export const COOLDOWN_BLOCK = [
